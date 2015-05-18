@@ -102,7 +102,7 @@ Start `ielm' if it's not already running."
   (ome-start-or-switch-to 'ielm "*ielm*"))
 
 (define-key emacs-lisp-mode-map (kbd "C-c C-z") 'ome-visit-ielm)
-(add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+;; (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
 (add-hook 'ielm-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 #+END_SRC
@@ -128,7 +128,7 @@ about how to mastering eshell, see [[http://www.masteringemacs.org/articles/2010
           (lambda ()
             (add-to-list 'ac-sources 'ac-source-pcomplete)))
 
-(add-to-list 'ac-modes 'eshell-mode)
+;; (add-to-list 'ac-modes 'eshell-mode)
 (add-hook 'eshell-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'eshell-mode-hook 'ac-emacs-lisp-mode-setup)
 #+END_SRC

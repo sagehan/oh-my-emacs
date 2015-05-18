@@ -125,7 +125,7 @@ Basic features of robe:
 #+BEGIN_SRC emacs-lisp
 (defun ome-robe-mode-setup ()
   (add-hook 'robe-mode-hook 'ac-robe-setup)
-  (add-to-list 'ac-modes 'inf-ruby-mode)
+;;  (add-to-list 'ac-modes 'inf-ruby-mode)
   (add-hook 'inf-ruby-mode-hook 'ac-robe-setup))
 
 (ome-install 'robe-mode)
