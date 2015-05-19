@@ -124,6 +124,8 @@ editing your document at your fingertips.
   (eval-after-load "helm"
     (evil-leader/set-key
       "f" 'helm-for-files
+      "l" 'helm-locate
+      "c" 'helm-colors
       "y" 'helm-show-kill-ring
       "t" 'helm-top
       "m" 'helm-man-woman
@@ -229,7 +231,7 @@ By default, =<Leader>= is =<SPC>=, so you can use =<SPC> c= to activate
 =ace-jump-char-mode=, and move you cursor quickly and directly. Enjoy it.
 
 #+NAME: ace-jump-mode
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp
 (defun ome-ace-jump-mode-setup ()
   (when (and (featurep 'evil) (featurep 'evil-leader))
     (evil-leader/set-key
@@ -240,20 +242,6 @@ By default, =<Leader>= is =<SPC>=, so you can use =<SPC> c= to activate
 (ome-install 'ace-jump-mode)
 #+END_SRC
 
-* Ace-window
-#+NAME: ace-window
-#+BEGIN_SRC emacs-lisp
-(defun ome-ace-window-setup ()
-    (when (and (featurep 'evil) (featurep 'evil-leader))
-      (evil-leader/set-key
-        "c" 'avy-goto-char
-        "l" 'avy-goto-line
-        "w" 'avy-goto-word-0))
-    (global-set-key (kbd "M-p") 'ace-window))
-
-(ome-install 'avy)
-(ome-install 'ace-window)
-#+END_SRC
 * Ack-and-a-half
   :PROPERTIES:
   :CUSTOM_ID: ack-and-a-ha
