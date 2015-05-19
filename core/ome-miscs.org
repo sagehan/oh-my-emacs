@@ -304,6 +304,9 @@ a list of known project you have viewed recently, kills all project buffers
 with a single shortcut, etc. Sounds great, ha? So, don't hesitate any more,
 just enjoy it!
 
+Using projectile with helm is more powerful, especially for large projects,
+Maybe you will like watch [[http://tuhdo.github.io/helm-projectile.html][this]] guide.
+
 #+NAME: projectile
 #+BEGIN_SRC emacs-lisp
 (defun ome-projectile-setup ()
@@ -312,6 +315,7 @@ just enjoy it!
   (global-set-key (kbd "C-x c h") 'helm-projectile))
 
 (ome-install 'projectile)
+(ome-install 'helm-projectile)
 #+END_SRC
 
 * Smartparens
