@@ -7,8 +7,9 @@
 ;; back, just put following code here.
 (menu-bar-mode t)
 
-;;; You email address
-(setq user-mail-address "xiaohanyu1988@gmail.com")
+;;; You Personal information
+(setq user-full-name "Sage Han"
+      user-mail-address "zongshian@gmail.com")
 
 ;;; Calendar settings
 ;; you can use M-x sunrise-sunset to get the sun time
