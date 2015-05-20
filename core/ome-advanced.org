@@ -127,7 +127,6 @@ editing your document at your fingertips.
       "y" 'helm-show-kill-ring
       "t" 'helm-top
       "m" 'helm-man-woman
-      "o" 'helm-occur
       "j" 'helm-M-x
       "e" 'helm-find-files
       "b" 'helm-buffers-list))
@@ -241,6 +240,10 @@ By default, =<Leader>= is =<SPC>=, so you can use =<SPC> c= to activate
 #+END_SRC
 
 * Ace-window
+  :PROPERTIES:
+  :CUSTOM_ID: ace-window
+  :END:
+
 #+NAME: ace-window
 #+BEGIN_SRC emacs-lisp
 (defun ome-ace-window-setup ()
@@ -253,6 +256,40 @@ By default, =<Leader>= is =<SPC>=, so you can use =<SPC> c= to activate
 
 (ome-install 'avy)
 (ome-install 'ace-window)
+#+END_SRC
+* Helm-swoop
+  :PROPERTIES:
+  :CUSTOM_ID: helm-swoop
+  :END:
+
+A more powerful helm-occur alternative!
+
+#+NAME: helm-swoop
+#+BEGIN_SRC emacs-lisp
+(defun ome-helm-swoop-setup ()
+  (when (and (featurep 'evil) (featurep 'evil-leader))
+    (evil-leader/set-key
+      "o" 'helm-swoop))
+  (eval-after-load "helm-swoop"
+    (progn
+      ;; Save buffer when helm-multi-swoop-edit complete
+      (setq helm-multi-swoop-edit-save t)
+
+      ;; If this value is t, split window inside the current window
+      (setq helm-swoop-split-with-multiple-windows nil)
+
+      ;; If nil, you can slightly boost invoke speed in exchange for text color
+      (setq helm-swoop-speed-or-color nil)
+
+      ;; Go to the opposite side of line from the end or beginning of line
+      (setq helm-swoop-move-to-line-cycle t)))
+
+  (global-set-key (kbd "C-c o") 'helm-swoop)
+  (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+  (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+  (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all))
+
+(ome-install 'helm-swoop)
 #+END_SRC
 * Ack-and-a-half
   :PROPERTIES:
