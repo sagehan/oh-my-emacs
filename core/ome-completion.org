@@ -128,11 +128,6 @@ fallback. But I do suggest you to take some time to be familiar with helm.
 [[http://macromates.com/][TextMate]]'s templating syntax. You can see the [[http://capitaomorte.github.io/yasnippet/][intro and tutorial]] or watch this
 [[http://www.youtube.com/watch?v%3DvOj7btx3ATg][video on youtube]] to get some basic knowledge.
 
-Oh-my-emacs do some hacks to =yas-prompt-functions=, it adopts [[https://github.com/m2ym/popup-el][popup]], a visual
-popup interface library extracted from [[http://cx4a.org/software/auto-complete/][auto-complete]] by its author. It has
-better look and feel than all the built-in =yas-prompt-functions=. Also it is
-easy to customize, and its isearch mode is very efficient, the items are
-filtered on-the-fly when typing[1].
 
 TODO:
 - The bundled snippets from official yasnippet is considered frozen, so you
@@ -142,35 +137,11 @@ TODO:
 
 #+NAME: yasnippet
 #+BEGIN_SRC emacs-lisp
-(eval-after-load 'popup
-  '(progn
-     (define-key popup-menu-keymap (kbd "M-n") 'popup-next)
-     (define-key popup-menu-keymap (kbd "TAB") 'popup-next)
-     (define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
-     (define-key popup-menu-keymap (kbd "<backtab>") 'popup-previous)
-     (define-key popup-menu-keymap (kbd "M-p") 'popup-previous)))
-
-(defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
-  (when (featurep 'popup)
-    (popup-menu*
-     (mapcar
-      (lambda (choice)
-        (popup-make-item
-         (or (and display-fn (funcall display-fn choice))
-             choice)
-         :value choice))
-      choices)
-     :prompt prompt
-     ;; start isearch mode immediately
-     :isearch t)))
-
 (defun ome-yasnippet-setup ()
-  (setq yas-prompt-functions
-        '(yas-popup-isearch-prompt
-          yas-no-prompt))
-  (yas-global-mode))
+  (yas-global-mode)
+  (global-company-mode)
+  (global-set-key (kbd "C-x y") 'company-yasnippet))
 
-(ome-install 'popup)
 (ome-install 'yasnippet)
 #+END_SRC
 
@@ -183,6 +154,3 @@ Ah, various ideas to enhance helm:
 - Provide a doc action which show documentation of elisp function or commands.
 - For helm-projectile, add full path to file list to differentiate same file
   name files.
-
-
-[1] http://iany.me/2012/03/use-popup-isearch-for-yasnippet-prompt/
